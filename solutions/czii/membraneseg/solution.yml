@@ -1,0 +1,48 @@
+album_api_version: 0.5.1
+args:
+- description: The path to the project JSON file, e.g., /hpc/projects/group.czii/krios1.processing/aretomo3/24jul24a/run001/vol002/
+  name: project_path
+  required: true
+  type: string
+- description: Session from Experiment, e.g., 24jul24a
+  name: session
+  required: true
+  type: string
+- default: run001
+  description: Run for Segmentation Output, e.g., run001
+  name: run
+  required: false
+  type: string
+- default: MemBrain_seg_v10_alpha.ckpt
+  description: The path to pre-trained network weights
+  name: model_path
+  required: false
+  type: string
+- default: -5
+  description: Segmentation Threshold
+  name: segmentation_threshold
+  required: false
+  type: integer
+- default: false
+  description: Flag to save segmentation scores.
+  name: save_segmentation_scores
+  required: false
+  type: boolean
+- default: true
+  description: Flag to Save Inverted Segmentation Mask
+  name: invert_mask
+  required: false
+  type: boolean
+changelog: null
+description: This solution calls Membrane-Seg to Segment Membranes in Tomograms.
+group: czii
+license: MIT
+name: membraneseg
+solution_creators:
+- Jonathan Schwartz
+tags:
+- copick
+- points
+timestamp: '2024-08-08T13:54:57.543098'
+title: Segment Membranes
+version: 0.1.0
