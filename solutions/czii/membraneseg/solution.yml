@@ -1,7 +1,7 @@
 album_api_version: 0.5.1
 args:
-- description: The path to the project JSON file, e.g., /hpc/projects/group.czii/krios1.processing/aretomo3/24jul24a/run001/vol002/
-  name: project_path
+- description: The path to the AreTomo Volumes, e.g., /hpc/projects/group.czii/krios1.processing/aretomo3/24jul24a/run001/vol002/
+  name: tomo_path
   required: true
   type: string
 - description: Session from Experiment, e.g., 24jul24a
@@ -34,6 +34,9 @@ args:
   required: false
   type: boolean
 changelog: null
+cite:
+- text: Team Tomo team.
+  url: https://github.com/teamtomo/membrain-seg/tree/main
 description: This solution calls Membrane-Seg to Segment Membranes in Tomograms.
 group: czii
 license: MIT
@@ -41,8 +44,8 @@ name: membraneseg
 solution_creators:
 - Jonathan Schwartz
 tags:
-- copick
-- points
-timestamp: '2024-08-08T13:54:57.543098'
+- membrane
+- segmentation
+timestamp: '2024-08-14T13:47:52.592341'
 title: Segment Membranes
-version: 0.1.0
+version: 0.2.0

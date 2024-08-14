@@ -7,7 +7,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.10
+  - python>3.10
   - pip
   - mrcfile
   - numpy
@@ -18,8 +18,8 @@ dependencies:
 
 args = [
     {
-        "name": "project_path",
-        "description":"The path to the project JSON file, e.g., /hpc/projects/group.czii/krios1.processing/aretomo3/24jul24a/run001/vol002/",
+        "name": "tomo_path",
+        "description":"The path to the AreTomo Volumes, e.g., /hpc/projects/group.czii/krios1.processing/aretomo3/24jul24a/run001/vol002/",
         "type": "string",
         "required": True, 
     },  
@@ -68,29 +68,41 @@ args = [
 
 def run():
     # Imports 
-    from tomo_segment.run_membrane_seg import run_mySegment
+    import tomo_segment.my_membrane_seg as segmentor
+    import glob, os
 
     # Parse Arguments
     args = get_args()
 
-    project_path = args.project_path
+    tomo_path = args.tomo_path
     session = args.session
     run = args.run
     model_path = args.model_path
     segmentation_threshold = args.segmentation_threshold
-    save_segmentation_scores = args.model_path
+    save_segmentation_scores = args.save_segmentation_scores
     invert_mask = args.model_path
+
+    print(f'\nPARAMETERS:\nTomo_path: {tomo_path}\nsession: {session}\nrun: {run}\nmodel_path: {model_path}\nsegmentation_threshold: {segmentation_threshold}\nsave_segmentation_scores: {save_segmentation_scores}\ninvert_mask: {invert_mask}\n')
     
-    run_mySegment(project_path, session, model_path, save_segmentation_scores, invert_mask)
+    availableTomos = glob.glob( os.path.join(tomo_path, '*.mrc') )
+    availableTomos = [f for f in availableTomos if 'ODD' not in f and 'EVN' not in f]
+
+    mySegment = segmentor.segment_membranes(mySession=session, myRun=run, 
+                                            invert_mask=invert_mask, modelPath = model_path )
+
+    for tomoPath in availableTomos:
+
+        mySegment.segment(tomoPath, segmentation_threshold, save_segmentation_scores)
 
 setup(
     group="czii",
     name="membraneseg",
-    version="0.1.0",
+    version="0.2.0",
     title="Segment Membranes",
     description="This solution calls Membrane-Seg to Segment Membranes in Tomograms.",
     solution_creators=["Jonathan Schwartz"],
-    tags=["copick", "points"],
+    cite=[{"text": "Team Tomo team.", "url": "https://github.com/teamtomo/membrain-seg/tree/main"}],
+    tags=["membrane", "segmentation"],
     license="MIT",
     album_api_version="0.5.1",
     args=args,
