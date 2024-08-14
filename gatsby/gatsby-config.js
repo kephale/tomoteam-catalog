@@ -1,9 +1,9 @@
 module.exports = {
-  pathPrefix: `/catalogs/default`,
+  pathPrefix: `/tomoteam-catalog`,
   siteMetadata: {
-    title: 'album catalog',
-    subtitle: 'sharing favourite solutions across tools and domains',
-    catalog_url: 'https://gitlab.com/album-app/catalogs/templates/catalog-gatsby',
+    title: 'tomoteam catalog',
+    subtitle: 'sharing favourite solutions for cryoet + teamtomo',
+    catalog_url: 'https://github.com/kephale/tomoteam-catalog.git',
     menuLinks:[
       {
          name:'Catalog',
