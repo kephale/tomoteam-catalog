@@ -1,0 +1,27 @@
+album_api_version: 0.5.1
+args:
+- description: example_parameter.json
+  name: parameter-path
+  required: true
+  type: string
+- description: The template string, e.g., ribosome-80S
+  name: template
+  required: true
+  type: string
+changelog: null
+cite:
+- text: SBC-Utrecht.
+  url: https://github.com/SBC-Utrecht/pytom-match-pick
+description: This solution calls PyTom to Find Proteins with Template Matching.
+group: czii
+license: MIT
+name: pytom-templatematch
+solution_creators:
+- Jonathan Schwartz
+tags:
+- czii
+- pytom
+- template match
+timestamp: '2024-08-14T22:09:24.291865'
+title: 3D Template Matching with PyTom
+version: 0.1.0
