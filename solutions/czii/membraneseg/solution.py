@@ -80,7 +80,7 @@ def run():
     model_path = args.model_path
     segmentation_threshold = args.segmentation_threshold
     save_segmentation_scores = args.save_segmentation_scores
-    invert_mask = args.model_path
+    invert_mask = args.invert_mask
 
     print(f'\nPARAMETERS:\nTomo_path: {tomo_path}\nsession: {session}\nrun: {run}\nmodel_path: {model_path}\nsegmentation_threshold: {segmentation_threshold}\nsave_segmentation_scores: {save_segmentation_scores}\ninvert_mask: {invert_mask}\n')
     
