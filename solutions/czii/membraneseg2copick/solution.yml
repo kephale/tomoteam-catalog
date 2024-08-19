@@ -1,0 +1,30 @@
+album_api_version: 0.5.1
+args:
+- description: Path to Configuration file for Output Copick Project
+  name: config_path
+  required: true
+  type: string
+- description: Path to where the membrane-seg experiment exits.
+  name: membrane_seg_path
+  required: true
+  type: string
+- default: true
+  description: Flag to Determine whether to export segmentation results
+  name: export_membrane_seg
+  required: false
+  type: boolean
+changelog: null
+description: This solution calls IMOD model2point to convert Model Coordinate Files
+  to Copick.
+group: czii
+license: MIT
+name: membraneseg2copick
+solution_creators:
+- Jonathan Schwartz
+tags:
+- Membrane-seg
+- Copick
+- Convert
+timestamp: '2024-08-19T13:24:10.361416'
+title: Export MembraneSeg2Copick
+version: 0.1.0
