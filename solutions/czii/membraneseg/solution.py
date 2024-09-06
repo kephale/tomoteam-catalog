@@ -83,13 +83,23 @@ def run():
     invert_mask = args.invert_mask
 
     print(f'\nPARAMETERS:\nTomo_path: {tomo_path}\nsession: {session}\nrun: {run}\nmodel_path: {model_path}\nsegmentation_threshold: {segmentation_threshold}\nsave_segmentation_scores: {save_segmentation_scores}\ninvert_mask: {invert_mask}\n')
-    
+
+    # Query Available Tomograms
     availableTomos = glob.glob( os.path.join(tomo_path, '*.mrc') )
     availableTomos = [f for f in availableTomos if 'ODD' not in f and 'EVN' not in f]
 
+    # Initialize Segment Class
     mySegment = segmentor.segment_membranes(mySession=session, myRun=run, 
                                             invert_mask=invert_mask, modelPath = model_path )
 
+    # Report and Save Processing Parameters
+    mySegment.store_parameters(tomo_path, segmentation_threshold, 
+                               save_segmentation_scores, invert_mask)
+
+    # In case of Re-Running, Find Remaining RunIDs and process remaining dataset
+    availableTomos = mySegment.find_remaining_run_ids(availableTomos, tomo_path)
+
+    # Main Loop - Iterate Through all Tomograms
     for tomoPath in availableTomos:
 
         mySegment.segment(tomoPath, segmentation_threshold, save_segmentation_scores)
